@@ -15,14 +15,16 @@ cc.Class({
     },
 
     // use this for initialization
-    init: function (ball) {
+    init: function (ball, game) {
         this.ball = ball;
+        this.game = game;
     },
 
     update:function () {
         if(this.collection()) {
             console.log('球撞到砖块了,改变球速度且销毁砖块');
             this.ball.collectionSetSpeed();
+            this.game.gainScore();
             this.node.destroy();
         };
     },

@@ -36,6 +36,12 @@ cc.Class({
 
         //生成砖块
         this.spawnBricks(this.level);
+
+        //生成计分label
+        this.score = 0;
+        this.label = new cc.Label;
+        this.label.parent = this.node;
+        this.refreshScore();
     },
 
     spawnBricks:function (level) {
@@ -61,10 +67,19 @@ cc.Class({
         brick.setPosition(x, y);
         brick.setContentSize(cc.size(40,40));
         brick.color = new cc.Color(0, 150, 0);
-        brick.addComponent(Brick).init(this.ball);
+        brick.addComponent(Brick).init(this.ball, this);
 
         brick.parent = this.node;
-    }
+    },
+
+    gainScore:function (score = 1) {
+        this.score += score;
+        this.refreshScore();
+    }.bind(this),
+
+    refreshScore:function () {
+        this.label.string = '您的得分：' + this.score;
+    }.bind(this),
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 
