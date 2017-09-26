@@ -44,4 +44,8 @@ cc.Class({
             this.speedY = -this.speedY;
         }
     },
+
+    collectionSetSpeed:function () {
+        this.speedY = -this.speedY;
+    }
 });

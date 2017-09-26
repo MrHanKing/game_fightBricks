@@ -16,20 +16,42 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad:function () {
+    init:function (ball) {
         this.speedX = 0;
         this.isLeft = false;
         this.isRight = false;
-
+        this.ball = ball;
         //启动监听事件
         this.setInputControl();
     },
 
     update:function (dt) {
+        //更新木板位置
         this.refreshSpeedX();
         this.node.x += this.speedX * dt;
         this.setXInScene(this.node.x);
         // console.log('木板的位置',this.node.x);
+        if (this.collection()) {
+            console.log('发生碰撞');
+            this.ball.collectionSetSpeed();
+        }
+    },
+
+    collection:function () {
+        var x1 = this.ball.node.x;
+        var y1 = this.ball.node.y;
+        var w1 = this.ball.node.width / 2;
+        var h1 = this.ball.node.height / 2;
+        var x2 = this.node.x;
+        var y2 = this.node.y;
+        var w2 = this.node.width / 2;
+        var h2 = this.node.height / 2;
+
+        if (Math.abs(x1 - x2) < w1 + w2 
+            && Math.abs(y1 - y2) < h1 + h2){
+                return true;
+            }
+        return false;
     },
 
     setXInScene:function (posX) {

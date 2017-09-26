@@ -289,7 +289,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "runSpeed": 50,
+    "runSpeed": 120,
     "startX": 0,
     "startY": -200
   },

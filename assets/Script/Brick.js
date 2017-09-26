@@ -12,12 +12,11 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        gamelevel:0
     },
 
     // use this for initialization
     onLoad: function () {
-        
+
     },
 
     // called every frame, uncomment this function to activate update callback

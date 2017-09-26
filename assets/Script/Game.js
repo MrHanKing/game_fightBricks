@@ -1,6 +1,7 @@
 var Levels = require('Level');
 var Player = require('Player');
-var Ball = require('Ball')
+var Ball = require('Ball');
+var Brick = require('Brick');
 
 cc.Class({
     extends: cc.Component,
@@ -30,11 +31,35 @@ cc.Class({
     onLoad: function () {
         this.level = Levels.gamelevel;
         console.log("game 获得游戏等级：", this.level);
+        //初始化操纵木板，传入球的信息
+        this.player.init(this.ball);
 
+        //生成砖块
+        this.spawnBricks(this.level);
     },
 
-    spawnbricks:function (level) {
-        // body...
+    spawnBricks:function (level) {
+        console.log('准备生成砖块');
+        var num = 20;//每个等级造的砖块数
+        var x = -cc.winSize.width / 2;
+        var y = cc.winSize.height / 2;
+        for (var index = 0; index < level * num; index++) {
+            if (x + Brick.width > cc.winSize.width / 2) {
+                x = -cc.winSize.width / 2;
+                y = y - Brick.height;
+            } else {
+                x += Brick.width; 
+            }
+            this.oneBrick(x,y);
+        }
+    },
+
+    oneBrick:function (x, y) {
+        console.log('生成一个砖块');
+        var brick = new cc.Node;
+        brick.setPosition(x, y);
+        brick.addComponent(Brick);
+        brick.parent = this.node;
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
