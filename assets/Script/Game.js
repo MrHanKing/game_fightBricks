@@ -56,9 +56,13 @@ cc.Class({
 
     oneBrick:function (x, y) {
         console.log('生成一个砖块');
+        //生成Brick组件所在的节点。试试节点颜色、不然用node挂sprite 改颜色
         var brick = new cc.Node;
         brick.setPosition(x, y);
-        brick.addComponent(Brick);
+        brick.setContentSize(cc.size(40,40));
+        brick.color = new cc.Color(0, 150, 0);
+        brick.addComponent(Brick).init(this.ball);
+
         brick.parent = this.node;
     }
     // called every frame, uncomment this function to activate update callback
