@@ -39,8 +39,11 @@ cc.Class({
 
         //生成计分label
         this.score = 0;
-        this.label = new cc.Label;
+        this.label = new cc.Node;
+        // console.log(this.label);
+        this.label.setPosition(0, 200);
         this.label.parent = this.node;
+        this.label.addComponent(cc.Label);
         this.refreshScore();
     },
 
@@ -64,10 +67,10 @@ cc.Class({
         console.log('生成一个砖块');
         //生成Brick组件所在的节点。试试节点颜色、不然用node挂sprite 改颜色
         var brick = new cc.Node;
-        brick.setPosition(x, y);
-        brick.setContentSize(cc.size(40,40));
-        brick.color = new cc.Color(0, 150, 0);
-        brick.addComponent(Brick).init(this.ball, this);
+        // brick.setPosition(x, y);
+        // brick.setContentSize(cc.size(40,40));
+        // brick.color = new cc.Color(0, 150, 0);
+        // brick.addComponent(Brick).init(this.ball, this);
 
         brick.parent = this.node;
     },
@@ -75,11 +78,11 @@ cc.Class({
     gainScore:function (score = 1) {
         this.score += score;
         this.refreshScore();
-    }.bind(this),
+    },
 
     refreshScore:function () {
-        this.label.string = '您的得分：' + this.score;
-    }.bind(this),
+        this.label.getComponent(cc.Label).string = '您的得分：' + this.score;
+    },
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 
