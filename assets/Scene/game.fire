@@ -289,7 +289,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "runSpeed": 120,
+    "runSpeed": 200,
     "startX": 0,
     "startY": -200
   },
@@ -322,6 +322,9 @@
     },
     "ball": {
       "__id__": 8
+    },
+    "brick": {
+      "__uuid__": "0f9371ce-79a8-417e-bf67-3506181b7c82"
     }
   }
 ]

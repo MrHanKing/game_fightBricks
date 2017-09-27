@@ -12,6 +12,8 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
+        width:40,
+        height:40,
     },
 
     // use this for initialization

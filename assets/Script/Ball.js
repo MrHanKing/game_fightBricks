@@ -34,13 +34,13 @@ cc.Class({
     },
 
     refreshSpeedX:function () {
-        if (Math.abs(this.node.x) > cc.winSize.width / 2) {
+        if (Math.abs(this.node.x) + this.node.width / 2 > cc.winSize.width / 2) {
             this.speedX = -this.speedX;
         }
     },
 
     refreshSpeedY:function () {
-        if (Math.abs(this.node.y) > cc.winSize.height / 2) {
+        if (Math.abs(this.node.y) + this.node.height / 2 > cc.winSize.height / 2) {
             this.speedY = -this.speedY;
         }
     },
