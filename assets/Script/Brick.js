@@ -14,20 +14,30 @@ cc.Class({
         // ...
         width:40,
         height:40,
+        hp:0,
     },
 
     // use this for initialization
     init: function (ball, game) {
         this.ball = ball;
         this.game = game;
+
+        //设置砖块血量
+        this.setHp();
+        //设置颜色；
+        this.setColor();
     },
 
     update:function () {
         if(this.collection()) {
             console.log('球撞到砖块了,改变球速度且销毁砖块');
             this.ball.collectionSetSpeed();
-            this.game.gainScore();
-            this.node.destroy();
+            this.hp -= 1;
+            this.setColor();
+            if (!this.hp) {
+                this.game.gainScore();
+                this.node.destroy();
+            }
         };
     },
 
@@ -46,6 +56,26 @@ cc.Class({
                 return true;
             }
         return false;
+    },
+
+    setHp:function () {
+        this.hp = Math.ceil(cc.random0To1() * 3);
+    },
+
+    setColor:function () {
+        switch (this.hp) {
+            case 3:
+                this.node.color = new cc.Color(255, 0, 0);//红色
+                break;
+            case 2:
+                this.node.color = new cc.Color(0, 0, 255);//蓝色
+                break;
+            case 1:
+                this.node.color = new cc.Color(255, 255, 255);//白色
+                break;        
+            default:
+                break;
+        }
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

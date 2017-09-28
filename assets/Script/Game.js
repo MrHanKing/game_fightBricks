@@ -93,7 +93,7 @@ cc.Class({
         this.ball.enabled = false;
         cc.director.getScheduler().schedule(function () {
             cc.director.loadScene('menu');
-        }, this, 0, 5, true);
+        }, this, 0, 0, 5, false);
     },
 
     onExit:function() {
